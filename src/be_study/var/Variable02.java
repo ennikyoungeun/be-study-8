@@ -14,7 +14,7 @@ public class Variable02 {
 		char chr1 = 'A'; // char 타입 (정수타입) : 문자 1개 저장
 						 // 'A' 작은따옴표로 감싼 문자 1개
 		// chr1 = 'ABC';    // 불가능 
-		
+	 
 		char chr2 = 86;
 		char chr3 = 0x23; 
 		
