@@ -13,7 +13,7 @@ public class Variable01 {
 				int def; // 정수형 숫자 타입의 변수 선언
 				
 				int point; //선언
-				int score; 
+				int score;
 
 //				int x;
 //				int y;
