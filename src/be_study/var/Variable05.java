@@ -71,3 +71,4 @@ public static void main(String[] args) {
 		System.out.printf("입력한 문자열 : %s\n", str);
 		
 }
+}
