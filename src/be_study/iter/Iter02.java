@@ -68,19 +68,10 @@ public class Iter02 {
 		}
 		System.out.println("----------------------------");
 		
-		i=0;
 		
-		while(i<=10) {
-			i++;
-			if (i==5)//5
-				continue;
-			System.out.println(i);
-			
-			if (i==8)
-				break;
 			
 		}
 		
 	}
 
-}
+
