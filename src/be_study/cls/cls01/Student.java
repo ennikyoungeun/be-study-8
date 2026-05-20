@@ -1,0 +1,27 @@
+package be_study.cls.cls01;
+
+public class Student { //메인빼고 생성
+
+	 //학생 객체 -> 클래스 (설계도 역할)
+	
+	//필드
+	//이 클래스 /객체/학생 이 가질수 잇는 or 상태나 특징을 포현할수있는
+	//특징 속성
+	//필드 변수
+	String name ; //이름
+	int grade; //학년
+	String phone;//전화번호 연락처
+	String studentNumber;//학생의 학번 학생 식별번호  12-30293 22k120
+	
+	
+	//생성자
+	
+	
+	
+	
+	//메소드
+	
+	
+	
+	
+}
