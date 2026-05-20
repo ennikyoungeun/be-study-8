@@ -22,6 +22,10 @@ public class Phone2 {
 		this.price =0;
 		this.battery =2500;
 		
+		//같은 클래스 파일 내부에서 내 다른 생성자 호출 this();
+		//this(); //외부입장 :new Phone2();
+		//this(); //외부입장: new Phone("갤럭시 폴드4", 2100000,4200);
+		this(model,0,2500);
 		//필드 초기화
 		//기타 다른 생성지 할일....
 		//알콜소독
@@ -31,9 +35,10 @@ public class Phone2 {
 	}
 	
 	Phone2 (String model, int price) {
-		this.model=model;
-		this.price =price;
-		this.battery =2500;
+//		this.model=model;
+//		this.price =price;
+//		this.battery =2500;
+		this(model,price,0);
 	}
 
 	//필드 초기화
@@ -43,9 +48,10 @@ public class Phone2 {
 	//불량검사
 	//재부팅
 	 Phone2 (int battery,String model ) { 
-		 this.battery=battery;
-		 this.model=model;
-		 this.price=0;
+			/*
+			 * this.battery=battery; this.model=model; this.price=0;
+			 */
+		 this(model,0,battery);
 	 }
 
 		//필드 초기화
