@@ -1,0 +1,71 @@
+package be_study.cls.cls07.pack3;
+
+public class Point {
+
+	// 접근제한자(public private default)
+	// getter setter
+	// 점수관리
+
+	int math; // 수학 default
+	private int lang; // 국어 비밀 나만접근가능
+	public int eng; // 영어 공개
+
+	// Point(){} //default
+	// private Point(){}
+	public Point() {
+	}
+
+	public Point(int math, int lang, int eng) {
+		this.math = math;
+		this.lang = lang;
+		this.eng = eng;
+	}
+
+	void method1() {
+		System.out.println("method1");
+	}
+
+	public void method2() {
+		System.out.println("method2");
+	}
+
+	private method3() {
+		System.out.println("method3");
+	}
+
+	// Getter Setter
+	// Getter :get 가져오기 값을 가져오겠다, return 값
+	// setter :Set 세팅한다 값을 저장한다 변수=값
+
+	// getXXX
+	// setXXX
+
+	public int getMath() {
+		return math;
+	}
+
+	public int getEng() {
+		return this.eng;
+	}
+
+	public int getLang() {
+		return this.lang;
+	}
+	public void setMath(int math) {
+		this.math=math;
+	}
+	public void setEng(int eng) {
+		//로직추가
+		
+		//0~100 정상 범위 ->그대로 저장
+		//범위 벗어나면 실수 ->0
+		if(eng >=0&&eng<=100) {
+			this.eng=eng;
+		}else {
+			this.eng=0;
+		}
+	}
+	public void setLang(int lang) {
+		this.math=lang;
+	}
+}
