@@ -29,7 +29,7 @@ public class Point {
 		System.out.println("method2");
 	}
 
-	private method3() {
+	private void method3() {
 		System.out.println("method3");
 	}
 
@@ -48,9 +48,13 @@ public class Point {
 		return this.eng;
 	}
 
-	public int getLang() {
-		return this.lang;
+	public int getLang(){
+		//return this.lang;
+		// 저장 0~100점 저장
+		// 실제 점수를 1000점 만점으로 환산해서 반환
+		return this.lang * 10;
 	}
+	
 	public void setMath(int math) {
 		this.math=math;
 	}
