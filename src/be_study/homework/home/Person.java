@@ -35,5 +35,21 @@ public class Person {
 	    // 3. 세팅된 Person 객체 리턴
 	    return p;
 	}
+	public static void callAllHello(Person[] people) {
+        for (Person p : people) {
+            p.hello();
+        }
+    }
+	public static Person findOldest(Person[] people) {
+	    Person oldest = people[0];
+
+	    for (Person p : people) {
+	        if (p.age > oldest.age) {
+	            oldest = p;
+	        }
+	    }
+
+	    return oldest;
+	}
 }
 

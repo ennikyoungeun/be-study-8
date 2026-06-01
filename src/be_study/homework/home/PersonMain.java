@@ -43,9 +43,29 @@ public class PersonMain {
         System.out.println();
         
 //		19. Person 배열을 매개변수로 받아 모든 사람의 hello()를 호출하라.
-      
+        Person[] people = new Person[3];
+
+        people[0] = new Person();
+        people[0].name = "영지";
+        people[0].age = 25;
+
+        people[1] = new Person();
+        people[1].name = "지원";
+        people[1].age = 30;
+
+        people[2] = new Person();
+        people[2].name = "석환";
+        people[2].age = 28;
+
+        // 모든 사람 hello() 호출
+        Person.callAllHello(people);
+
         
 //		20. Person 배열을 만들어 가장 나이가 많은 사람을 리턴하는 메서드를 작성하라.
+        Person oldest = Person.findOldest(people);
+
+        System.out.println("가장 나이가 많은 사람: "
+                + oldest.name + ", 나이: " + oldest.age);
 
 	
 	
@@ -54,3 +74,4 @@ public class PersonMain {
 	}
 
 }
+
