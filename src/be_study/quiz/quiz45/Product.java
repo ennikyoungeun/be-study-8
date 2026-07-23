@@ -2,57 +2,52 @@ package be_study.quiz.quiz45;
 
 public class Product {
 	
-	int p_code;
-	String p_name;
-	int p_price;
+	//java		DB
+	//pCode		p_code
+	//pName		p_name
+	//pPrice	p_price	
 	
+//	int p_code;
+//	String p_name;
+//	int p_price; 
 	
-	public Product() {
+	int pCode;
+	String pName;
+	int pPrice;
+	
+	public Product() {}
+	
+	public Product(int pCode, String pName, int pPrice) {
 		super();
+		this.pCode = pCode;
+		this.pName = pName;
+		this.pPrice = pPrice;
 	}
-
-
-	public Product(int p_code, String p_name, int p_price) {
-		super();
-		this.p_code = p_code;
-		this.p_name = p_name;
-		this.p_price = p_price;
+	
+	public int getpCode() {
+		return pCode;
 	}
-
-
-	public int getP_code() {
-		return p_code;
+	public void setpCode(int pCode) {
+		this.pCode = pCode;
 	}
-
-
-	public void setP_code(int p_code) {
-		this.p_code = p_code;
+	public String getpName() {
+		return pName;
 	}
-
-
-	public String getP_name() {
-		return p_name;
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
-
-
-	public void setP_name(String p_name) {
-		this.p_name = p_name;
+	public int getpPrice() {
+		return pPrice;
 	}
-
-
-	public int getP_price() {
-		return p_price;
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
 	}
-
-
-	public void setP_price(int p_price) {
-		this.p_price = p_price;
-	}
-
-
 	@Override
 	public String toString() {
-		return "Product [p_code=" + p_code + ", p_name=" + p_name + ", p_price=" + p_price + "]";
+		return "Product [pCode=" + pCode + ", pName=" + pName + ", pPrice=" + pPrice + "]";
 	}
-
+	
+	
+	
+	
 }
