@@ -21,6 +21,11 @@ public class Dept {
 		return deptno;
 	}
 
+	@Override
+	public String toString() {
+		return "Dept [deptno=" + deptno + ", dname=" + dname + ", loc=" + loc + "]";
+	}
+
 	public void setDeptno(int deptno) {
 		this.deptno = deptno;
 	}
@@ -41,7 +46,10 @@ public class Dept {
 		this.loc = loc;
 	}
 	
+	//source -> generateconstructor...-> 다체크 -> generateconstructor...->다체크해제 generate
+	//source -> generate 겟터셋터-> 다체크 생성
 	
+	//tostring..
 	
 	
 }
