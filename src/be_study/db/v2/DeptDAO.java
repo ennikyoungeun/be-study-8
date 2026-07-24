@@ -1,7 +1,6 @@
 package be_study.db.v2;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -152,4 +151,124 @@ public class DeptDAO {
 	
 	
 	
+	//SELECT ->쿼리실행 -> DB테이블 정보조회 -> RESULTSET -> 객체/리스트 단위 변수 변환
+	
+	//INSERT UPDATE DELETE -> 실행 -> RETURN 결과 : 적용된 행의 갯수
+	
+	
+	// 저장 INSERT
+
+	public int saveDept(int deptno, String dname, String loc) {
+
+		Connection conn = null; // db 연결
+		PreparedStatement psmt = null; // db 연결해서 sql 명령 실행해주는 객체
+		ResultSet rs = null; // sql 실행 후 select 결과를 저장하는 객체
+
+		conn = DBConnectionManager.connectDB();
+
+		// 실행할 쿼리 준비
+		String sqlQuery = " insert into dept(deptno,dname,loc) values (?,?,?) ";
+
+		int result = 0;
+
+		// 쿼리 실행, 실행 후 후속 데이터 처리
+		try {
+
+			psmt = conn.prepareStatement(sqlQuery);
+
+			psmt.setInt(1, deptno);
+			psmt.setString(2, dname);
+			psmt.setString(3, loc);
+			// rs = psmt.executeQuery(); //select 수행
+
+			// INSERT UPDATE DELETE -> 적용된 행 갯수
+			// executeUpdate():
+			result = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs);
+		}
+
+		return result;
+	}
+	
+	public int saveDept(Dept dept) { //Dept dept-> 저장하려는 객체: 객체에 담아서 전달하는방법
+
+		Connection conn = null; // db 연결
+		PreparedStatement psmt = null; // db 연결해서 sql 명령 실행해주는 객체
+		ResultSet rs = null; // sql 실행 후 select 결과를 저장하는 객체
+
+		conn = DBConnectionManager.connectDB();
+
+		// 실행할 쿼리 준비
+		String sqlQuery = " insert into dept(deptno,dname,loc) values (?,?,?) ";
+
+		int result = 0;
+
+		// 쿼리 실행, 실행 후 후속 데이터 처리
+		try {
+
+			psmt = conn.prepareStatement(sqlQuery);
+
+			psmt.setInt(1, dept.getDeptno());
+			psmt.setString(2, dept.getDname());
+			psmt.setString(3, dept.getLoc());
+			// rs = psmt.executeQuery(); //select 수행
+
+			// INSERT UPDATE DELETE -> 적용된 행 갯수
+			// executeUpdate():
+			result = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs);
+		}
+
+		return result;
+
+	}
+
+	// 삭제 DELETE
+	public int removeDept(int deptno) { //PK컬럼 deptno 값 기준으로 삭제
+
+		Connection conn = null; // db 연결
+		PreparedStatement psmt = null; // db 연결해서 sql 명령 실행해주는 객체
+		ResultSet rs = null; // sql 실행 후 select 결과를 저장하는 객체
+
+		conn = DBConnectionManager.connectDB();
+
+		// 실행할 쿼리 준비
+		String sqlQuery = " delete from dept where deptno =? ";
+
+		int result = 0;
+
+		// 쿼리 실행, 실행 후 후속 데이터 처리
+		try {
+
+			psmt = conn.prepareStatement(sqlQuery);
+
+			psmt.setInt(1, deptno);
+			//rs = psmt.executeQuery(); //select
+
+			// INSERT UPDATE DELETE -> 적용된 행 갯수
+			// executeUpdate():
+			result = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs);
+		}
+
+		return result;
+	}
+	
+	public int removeDept(Dept dept) {
+		return removeDept(dept.getDeptno());
+	}
+	
+
 }
