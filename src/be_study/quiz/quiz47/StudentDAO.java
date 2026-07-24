@@ -7,62 +7,150 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import be_study.db.v3.DBConnectionManager;
-import be_study.db.v3.ProfessorDTO;
-
-
 public class StudentDAO {
 
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	
+	// 1. Student 전체 조회
 	public List<StudentDTO> findStudentList() {
-		
-		//db 연결, 실행 객체
-		Connection conn = null; //db 연결
-		PreparedStatement psmt = null; //db 연결해서 sql 명령 실행해주는 객체
-		ResultSet rs = null; //sql 실행 후 select 결과를 저장하는 객체
 
 		conn = DBConnectionManager.connectDB();
-		
-		String sqlQuery = " select " 
-				+ " studno, name, id,grade,jumin, TO_CHAR(birthday, 'YYYY-MM-DD') birthday,"
-				+ "tel,height,weight,deptno1,deptno2,profno "
-				+ " from student ";
-		
+
+		String sqlQuery = " SELECT "
+				+ " STUDNO, NAME, ID, GRADE, JUMIN, "
+				+ " TO_CHAR(BIRTHDAY,'YYYY-MM-DD') BIRTHDAY, "
+				+ " TEL, HEIGHT, WEIGHT, DEPTNO1, DEPTNO2, PROFNO "
+				+ " FROM STUDENT ";
+
 		List<StudentDTO> studentList = new ArrayList<StudentDTO>();
-		
-		//쿼리 실행, 실행 후 후속 데이터 처리
+
 		try {
-			
-			psmt = conn.prepareStatement(sqlQuery);
-			rs = psmt.executeQuery();
-			
-			while(rs.next()) {  
-				StudentDTO  student = new StudentDTO();
-				
-				student.setStudno( rs.getInt("studno") );
-				student.setName( rs.getString("name") );
-				student.setId( rs.getString("id") );
-				student.setGrade( rs.getInt("grade") );
-				student.setJumin( rs.getString("jumin") );
-				student.setBirthday( rs.getString("birthday") );
-				student.setTel( rs.getString("tel") );
-				student.setHeight( rs.getInt("height") );
-				student.setWeight( rs.getInt("weight") );
-				student.setDeptno1( rs.getInt("deptno1") );
-				student.setDeptno2( rs.getInt("deptno2") );
-				student.setProfno( rs.getInt("profno") );
-				
+
+			pstmt = conn.prepareStatement(sqlQuery);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				StudentDTO student = new StudentDTO();
+
+				student.setStudno(rs.getInt("STUDNO"));
+				student.setName(rs.getString("NAME"));
+				student.setId(rs.getString("ID"));
+				student.setGrade(rs.getInt("GRADE"));
+				student.setJumin(rs.getString("JUMIN"));
+				student.setBirthday(rs.getString("BIRTHDAY"));
+				student.setTel(rs.getString("TEL"));
+				student.setHeight(rs.getInt("HEIGHT"));
+				student.setWeight(rs.getInt("WEIGHT"));
+				student.setDeptno1(rs.getInt("DEPTNO1"));
+				student.setDeptno2(rs.getInt("DEPTNO2"));
+				student.setProfno(rs.getInt("PROFNO"));
+
 				studentList.add(student);
 			}
-			
-		} catch (SQLException e) { 
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBConnectionManager.disconnectDB(conn, psmt, rs);
+			DBConnectionManager.disconnectDB(conn, pstmt, rs);
 		}
-		
+
 		return studentList;
-		
+	}
+	
+	// 2. 학년별 Student 조회
+	public List<StudentDTO> findStudentListByGrade(int grade) {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sqlQuery = " SELECT "
+				+ " STUDNO, NAME, ID, GRADE, JUMIN, "
+				+ " TO_CHAR(BIRTHDAY,'YYYY-MM-DD') BIRTHDAY, "
+				+ " TEL, HEIGHT, WEIGHT, DEPTNO1, DEPTNO2, PROFNO "
+				+ " FROM STUDENT "
+				+ " WHERE GRADE = ? ";
+
+		List<StudentDTO> studentList = new ArrayList<StudentDTO>();
+
+		try {
+
+			pstmt = conn.prepareStatement(sqlQuery);
+
+			pstmt.setInt(1, grade);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				StudentDTO student = new StudentDTO();
+
+				student.setStudno(rs.getInt("STUDNO"));
+				student.setName(rs.getString("NAME"));
+				student.setId(rs.getString("ID"));
+				student.setGrade(rs.getInt("GRADE"));
+				student.setJumin(rs.getString("JUMIN"));
+				student.setBirthday(rs.getString("BIRTHDAY"));
+				student.setTel(rs.getString("TEL"));
+				student.setHeight(rs.getInt("HEIGHT"));
+				student.setWeight(rs.getInt("WEIGHT"));
+				student.setDeptno1(rs.getInt("DEPTNO1"));
+				student.setDeptno2(rs.getInt("DEPTNO2"));
+				student.setProfno(rs.getInt("PROFNO"));
+
+				studentList.add(student);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, pstmt, rs);
+		}
+
+		return studentList;
+
+	}
+	
+	// 3. Student 저장
+	public int saveStudent(StudentDTO student) {
+
+		conn = DBConnectionManager.connectDB();
+
+		String sqlQuery = " INSERT INTO STUDENT "
+				+ "VALUES(?, ?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD'), ?, ?, ?, ?, ?, ?)";
+
+		int result = 0;
+
+		try {
+
+			pstmt = conn.prepareStatement(sqlQuery);
+
+			pstmt.setInt(1, student.getStudno());
+			pstmt.setString(2, student.getName());
+			pstmt.setString(3, student.getId());
+			pstmt.setInt(4, student.getGrade());
+			pstmt.setString(5, student.getJumin());
+			pstmt.setString(6, student.getBirthday());
+			pstmt.setString(7, student.getTel());
+			pstmt.setInt(8, student.getHeight());
+			pstmt.setInt(9, student.getWeight());
+			pstmt.setInt(10, student.getDeptno1());
+			pstmt.setInt(11, student.getDeptno2());
+			pstmt.setInt(12, student.getProfno());
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, pstmt, rs);
+		}
+
+		return result;
+
 	}
 
-	
 }

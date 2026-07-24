@@ -1,36 +1,57 @@
 package be_study.quiz.quiz47;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-
-import be_study.db.v1.Dept;
-
 
 public class DBStudentMain {
 
 	public static void main(String[] args) {
-		
+
 		StudentDAO studentDAO = new StudentDAO();
 
+		// 1. 전체조회
+		System.out.println("========== 1번 : 전체조회 ==========");
+
 		List<StudentDTO> studentList = studentDAO.findStudentList();
-		
 
-		for(StudentDTO s : studentList) {
-			
-			
-			System.out.println(s.toString());
-			System.out.println(s.getBirthday());
-			
-			//ConvertDateUtil.convertDateStringToLocalDateTime(p.getHiredate());
+		for (StudentDTO student : studentList) {
+			System.out.println(student.toString());
 		}
-	
 
+		// 2. 학년조회
+		System.out.println("========== 2번 : 학년조회 ==========");
 
+		List<StudentDTO> gradeList = studentDAO.findStudentListByGrade(2);
+
+		for (StudentDTO student : gradeList) {
+			System.out.println(student.toString());
+		}
+
+		// 3. 학생 저장
+		System.out.println("========== 3번 : 저장 ==========");
+
+		StudentDTO student = new StudentDTO(
+				9901,
+				"홍길동",
+				"hong",
+				2,
+				"0001011234567",
+				"2000-05-31",
+				"01012345678",
+				175,
+				70,
+				101,
+				201,
+				9901
+		);
+
+		int result = studentDAO.saveStudent(student);
+
+		if (result > 0) {
+			System.out.println("학생 저장 성공");
+		} else {
+			System.out.println("학생 저장 실패");
+		}
 
 	}
+
 }
