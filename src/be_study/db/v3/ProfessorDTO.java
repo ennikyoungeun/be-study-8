@@ -2,15 +2,24 @@ package be_study.db.v3;
 
 import java.time.LocalDateTime;
 
-// DTO : data transfer object   포장 박스 역할
+// DTO : Data Transfer Object   포장박스역할
 public class ProfessorDTO {
 	int profno;
-	@Override
-	public String toString() {
-		return "professorDTO [profno=" + profno + ", name=" + name + ", id=" + id + ", position=" + position + ", pay="
-				+ pay + ", hiredate=" + hiredate + ", bonus=" + bonus + ", deptno=" + deptno + ", email=" + email
-				+ ", hpage=" + hpage + "]";
-	}
+	String name;
+	String id;
+	String position;
+	int pay;
+
+	//java.sql.Date hiredate;
+	//LocalDateTime hiredate;  //날짜
+	String hiredate; //날짜를 문자형으로
+
+	int bonus;
+	int deptno;
+	String email;
+	String hpage;
+
+
 	public int getProfno() {
 		return profno;
 	}
@@ -41,10 +50,10 @@ public class ProfessorDTO {
 	public void setPay(int pay) {
 		this.pay = pay;
 	}
-	public LocalDateTime getHiredate() {
+	public String getHiredate() {
 		return hiredate;
 	}
-	public void setHiredate(LocalDateTime hiredate) {
+	public void setHiredate(String hiredate) {
 		this.hiredate = hiredate;
 	}
 	public int getBonus() {
@@ -71,17 +80,14 @@ public class ProfessorDTO {
 	public void setHpage(String hpage) {
 		this.hpage = hpage;
 	}
-	String name;
-	String id;
-	String position;
-	int pay;
-	
-	//java.sql.Date hiredate;
-	LocalDateTime hiredate; //날짜
-	//String hiredate; //날짜를 문자형으로
-	
-	int bonus;
-	int deptno;
-	String email;
-	String hpage;
+	@Override
+	public String toString() {
+		return "ProfessorDTO [profno=" + profno + ", name=" + name + ", id=" + id + ", position=" + position + ", pay="
+				+ pay + ", hiredate=" + hiredate + ", bonus=" + bonus + ", deptno=" + deptno + ", email=" + email
+				+ ", hpage=" + hpage + "]";
+	}
+
+
+
+
 }
