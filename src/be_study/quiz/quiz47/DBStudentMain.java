@@ -30,19 +30,19 @@ public class DBStudentMain {
 		System.out.println("========== 3번 : 저장 ==========");
 
 		StudentDTO student = new StudentDTO(
-				9901,
-				"홍길동",
-				"hong",
-				2,
-				"0001011234567",
+				1004,
+				"Ennikyoungeun",
+				"Ennik",
+				3,
+				"0005314000000",
 				"2000-05-31",
-				"01012345678",
-				175,
-				70,
+				"010)66666666",
+				160,
+				53,
 				101,
 				201,
-				9901
-		);
+				1001		
+				);
 
 		int result = studentDAO.saveStudent(student);
 
