@@ -24,6 +24,7 @@ public class StudentDAO {
 				+ " TO_CHAR(BIRTHDAY,'YYYY-MM-DD') BIRTHDAY, "
 				+ " TEL, HEIGHT, WEIGHT, DEPTNO1, DEPTNO2, PROFNO "
 				+ " FROM STUDENT ";
+//		String sqlQuery = "select * from student ";
 
 		List<StudentDTO> studentList = new ArrayList<StudentDTO>();
 
