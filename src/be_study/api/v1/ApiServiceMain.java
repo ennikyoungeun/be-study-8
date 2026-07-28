@@ -4,7 +4,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import be_study.api.MidTaDTO;
+import be_study.api.v1.MidTaDTO;
+
 
 public class ApiServiceMain {
 

@@ -1,4 +1,4 @@
-package be_study.api;
+package be_study.api.v1;
 
 //DB쪽 테이블 midta
 public class MidTaDTO {
